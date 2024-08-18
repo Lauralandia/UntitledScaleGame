@@ -1,0 +1,119 @@
+[gd_scene load_steps=17 format=3 uid="uid://cq0lmch7yi4se"]
+
+[ext_resource type="Script" path="res://Scripts/laserBeam.gd" id="1_66d6e"]
+[ext_resource type="Texture2D" uid="uid://cst66vh0neffu" path="res://Assets/Sprites/laser_particle.png" id="2_wsbr4"]
+[ext_resource type="AudioStream" uid="uid://drt5rbib47w03" path="res://Assets/Sounds/laser_beam_2.wav" id="3_j7kj0"]
+[ext_resource type="AudioStream" uid="uid://c8ru33j1cqw20" path="res://Assets/Sounds/laser_hit.wav" id="4_shuld"]
+
+[sub_resource type="Gradient" id="Gradient_7bhgp"]
+colors = PackedColorArray(0, 1, 0.94902, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0iqth"]
+gradient = SubResource("Gradient_7bhgp")
+
+[sub_resource type="Curve" id="Curve_s8fvn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.433333, 1), 0.0, 0.0, 0, 0, Vector2(0.653333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_bi66q"]
+curve = SubResource("Curve_s8fvn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8126p"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 20.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_bi66q")
+color = Color(0, 1, 1, 1)
+color_ramp = SubResource("GradientTexture1D_0iqth")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qmqi6"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+initial_velocity_max = 200.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_bi66q")
+color = Color(0, 1, 1, 1)
+color_ramp = SubResource("GradientTexture1D_0iqth")
+
+[sub_resource type="Gradient" id="Gradient_nxsvo"]
+colors = PackedColorArray(0, 1, 1, 1, 0, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yqfn6"]
+gradient = SubResource("Gradient_nxsvo")
+
+[sub_resource type="Curve" id="Curve_g58pq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.746667, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kbx3i"]
+curve = SubResource("Curve_g58pq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k78r3"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(200, 0, 0)
+emission_shape_scale = Vector3(200, 1, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+gravity = Vector3(0, 0, 0)
+tangential_accel_min = -300.0
+tangential_accel_max = 300.0
+scale_min = 0.3
+scale_curve = SubResource("CurveTexture_kbx3i")
+color = Color(0, 1, 1, 1)
+color_ramp = SubResource("GradientTexture1D_yqfn6")
+
+[sub_resource type="Environment" id="Environment_fpbd1"]
+background_mode = 3
+glow_intensity = 3.41
+glow_strength = 2.0
+glow_blend_mode = 0
+
+[node name="laserBeam" type="RayCast2D" groups=["laser_beam"]]
+position = Vector2(60, 113)
+target_position = Vector2(400, 0)
+collision_mask = 2
+collide_with_areas = true
+script = ExtResource("1_66d6e")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 12, 0)
+width = 0.0
+default_color = Color(0, 1, 1, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="startParticles" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_8126p")
+texture = ExtResource("2_wsbr4")
+lifetime = 0.4
+
+[node name="endParticles" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_qmqi6")
+texture = ExtResource("2_wsbr4")
+lifetime = 0.4
+
+[node name="BeamParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_k78r3")
+texture = ExtResource("2_wsbr4")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fpbd1")
+
+[node name="laser_sound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-60, -113)
+stream = ExtResource("3_j7kj0")
+bus = &"SFX"
+
+[node name="laser_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_shuld")
+bus = &"SFX"

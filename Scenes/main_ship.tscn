@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://wew2x6d2hfpm"]
+
+[ext_resource type="Script" path="res://Scripts/mainShip.gd" id="1_d2fvg"]
+[ext_resource type="Texture2D" uid="uid://bcw6ljyfd5bq" path="res://Assets/Sprites/playerShip1_blue.png" id="2_ieq62"]
+[ext_resource type="PackedScene" uid="uid://cq0lmch7yi4se" path="res://Scenes/laser_beam.tscn" id="3_6bhj3"]
+[ext_resource type="AudioStream" uid="uid://dki6qhik1qqxc" path="res://Assets/Sounds/main_ship_hit.wav" id="4_ausdj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_co4py"]
+size = Vector2(38, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bu8wm"]
+size = Vector2(46, 56)
+
+[node name="mainShip" type="CharacterBody2D"]
+collision_mask = 514
+script = ExtResource("1_d2fvg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ieq62")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_co4py")
+
+[node name="laserBeam" parent="." instance=ExtResource("3_6bhj3")]
+position = Vector2(19, 0)
+
+[node name="hitBox" type="Area2D" parent="."]
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+shape = SubResource("RectangleShape2D_bu8wm")
+
+[node name="shipHit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ausdj")
+
+[connection signal="body_entered" from="hitBox" to="." method="_on_hit_box_body_entered"]

@@ -1,0 +1,206 @@
+[gd_scene load_steps=15 format=3 uid="uid://c0mfbqiierh28"]
+
+[ext_resource type="PackedScene" uid="uid://wew2x6d2hfpm" path="res://Scenes/main_ship.tscn" id="1_qwqwi"]
+[ext_resource type="Script" path="res://Scripts/main_game.gd" id="1_vp66c"]
+[ext_resource type="Texture2D" uid="uid://cixgie8n8uku7" path="res://Assets/Misc/starfieldbg-empty.png" id="2_2mnn0"]
+[ext_resource type="PackedScene" uid="uid://c26g7a6mhj8bh" path="res://Scenes/enemy_ship.tscn" id="2_akhno"]
+[ext_resource type="Texture2D" uid="uid://dt5ydrg1168tf" path="res://Assets/Misc/starfieldbg.png" id="2_lhwbg"]
+[ext_resource type="AudioStream" uid="uid://b200lsbqki0i0" path="res://Assets/Sounds/draft-monk-ambience.mp3" id="3_2dy38"]
+[ext_resource type="Script" path="res://Scripts/HUD.gd" id="4_lfjep"]
+[ext_resource type="PackedScene" uid="uid://fghg0okmg1ea" path="res://Scenes/pause_menu.tscn" id="6_o63pf"]
+[ext_resource type="Texture2D" uid="uid://cst66vh0neffu" path="res://Assets/Sprites/laser_particle.png" id="8_pwkka"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qamp6"]
+normal = Vector2(1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11y0h"]
+bg_color = Color(0.148946, 1.93786e-05, 0.153625, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1h4g"]
+bg_color = Color(4.66868e-06, 0.900363, 0.200776, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bf6ba"]
+bg_color = Color(0.136826, 0.136826, 0.136826, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmw04"]
+bg_color = Color(0.741176, 0.537255, 0.0156863, 1)
+
+[node name="mainGame" type="Node2D"]
+script = ExtResource("1_vp66c")
+
+[node name="areaOne" type="Node2D" parent="."]
+
+[node name="areaOneBG" type="TextureRect" parent="areaOne"]
+offset_left = -1421.0
+offset_top = -1.0
+offset_right = 2675.0
+offset_bottom = 4095.0
+texture = ExtResource("2_2mnn0")
+
+[node name="mainShip" parent="areaOne" instance=ExtResource("1_qwqwi")]
+position = Vector2(505, 424)
+
+[node name="Camera2D" type="Camera2D" parent="areaOne/mainShip"]
+position = Vector2(-1, 0)
+limit_left = -1400
+limit_top = 0
+limit_right = 2600
+limit_bottom = 4000
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="enemyShip" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(745, 138)
+scale = Vector2(0.5, 0.5)
+
+[node name="NorthBoundary" type="StaticBody2D" parent="areaOne"]
+position = Vector2(26, 22)
+rotation = 1.5708
+collision_layer = 512
+collision_mask = 3
+
+[node name="NorthColl" type="CollisionShape2D" parent="areaOne/NorthBoundary"]
+position = Vector2(0, 28)
+shape = SubResource("WorldBoundaryShape2D_qamp6")
+
+[node name="SouthBoundary" type="StaticBody2D" parent="areaOne"]
+position = Vector2(528, 3953)
+rotation = -1.5708
+collision_layer = 512
+collision_mask = 3
+
+[node name="SouthColl" type="CollisionShape2D" parent="areaOne/SouthBoundary"]
+position = Vector2(0, 28)
+shape = SubResource("WorldBoundaryShape2D_qamp6")
+
+[node name="EastBoundary" type="StaticBody2D" parent="areaOne"]
+position = Vector2(2519, 1434)
+rotation = 3.14159
+collision_layer = 512
+collision_mask = 3
+
+[node name="EastColl" type="CollisionShape2D" parent="areaOne/EastBoundary"]
+position = Vector2(0, 28)
+shape = SubResource("WorldBoundaryShape2D_qamp6")
+
+[node name="WestBoundary" type="StaticBody2D" parent="areaOne"]
+position = Vector2(-1368, 893)
+collision_layer = 512
+collision_mask = 3
+
+[node name="WestColl" type="CollisionShape2D" parent="areaOne/WestBoundary"]
+position = Vector2(0, 28)
+shape = SubResource("WorldBoundaryShape2D_qamp6")
+
+[node name="BGMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_2dy38")
+autoplay = true
+bus = &"BG"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("4_lfjep")
+
+[node name="healthBG" type="ColorRect" parent="HUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -155.0
+offset_top = -38.0
+offset_right = 155.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.054902, 0.188235, 0.635294, 1)
+
+[node name="healthBar" type="ProgressBar" parent="HUD/healthBG"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -25.0
+offset_right = 150.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_styles/background = SubResource("StyleBoxFlat_11y0h")
+theme_override_styles/fill = SubResource("StyleBoxFlat_k1h4g")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="fuelBG" type="ColorRect" parent="HUD"]
+custom_minimum_size = Vector2(40, 290)
+layout_direction = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -144.0
+offset_right = -5.0
+offset_bottom = 146.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0, 1, 1)
+
+[node name="fuelBar" type="ProgressBar" parent="HUD/fuelBG"]
+custom_minimum_size = Vector2(50, 275)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -137.5
+offset_right = 10.0
+offset_bottom = 137.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bf6ba")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mmw04")
+max_value = 1000.0
+step = 1.0
+value = 1000.0
+fill_mode = 3
+
+[node name="fuelTimer" type="Timer" parent="HUD/fuelBG"]
+autostart = true
+
+[node name="mapScreen" type="TextureRect" parent="HUD"]
+visible = false
+offset_left = 206.0
+offset_top = 85.0
+offset_right = 4302.0
+offset_bottom = 4181.0
+scale = Vector2(0.15, 0.15)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_lhwbg")
+
+[node name="marker" type="Sprite2D" parent="HUD/mapScreen"]
+scale = Vector2(5, 5)
+texture = ExtResource("8_pwkka")
+
+[node name="pauseMenu" parent="." instance=ExtResource("6_o63pf")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 502.0
+offset_top = 376.0
+offset_right = 502.0
+offset_bottom = 376.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[connection signal="timeout" from="HUD/fuelBG/fuelTimer" to="HUD" method="_on_fuel_timer_timeout"]
