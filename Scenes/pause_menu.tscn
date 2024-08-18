@@ -1,0 +1,94 @@
+[gd_scene load_steps=2 format=3 uid="uid://fghg0okmg1ea"]
+
+[ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_f0emh"]
+
+[node name="pauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f0emh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(400, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.5
+offset_top = -181.5
+offset_right = 165.5
+offset_bottom = 181.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 13
+alignment = 1
+
+[node name="pauseTitle" type="Label" parent="MarginContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Game Paused"
+horizontal_alignment = 1
+
+[node name="bg_volume" type="Label" parent="MarginContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Background Volume"
+horizontal_alignment = 1
+
+[node name="BG_vol_slider" type="HSlider" parent="MarginContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="sfx_volume" type="Label" parent="MarginContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="SFX_vol_slider" type="HSlider" parent="MarginContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="Resume" type="Button" parent="MarginContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Resume Game
+"
+
+[node name="startOver" type="Button" parent="MarginContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Start Over"
+
+[node name="Exit" type="Button" parent="MarginContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Exit Game
+"
+
+[connection signal="pressed" from="MarginContainer/ColorRect/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/ColorRect/VBoxContainer/startOver" to="." method="_on_start_over_pressed"]
+[connection signal="pressed" from="MarginContainer/ColorRect/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

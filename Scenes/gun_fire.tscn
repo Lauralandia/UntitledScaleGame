@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8v35njtep224"]
+
+[ext_resource type="Script" path="res://Scripts/gun_fire.gd" id="1_qxv7m"]
+[ext_resource type="Texture2D" uid="uid://bvnteuldsnvfq" path="res://Assets/Sprites/red_particle.png" id="2_o7cme"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2gt2v"]
+radius = 4.12311
+
+[node name="gunFire" type="CharacterBody2D" groups=["gunfire"]]
+collision_layer = 8
+motion_mode = 1
+script = ExtResource("1_qxv7m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_o7cme")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2gt2v")
+
+[node name="Expire" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Expire" to="." method="_on_expire_timeout"]
