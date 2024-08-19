@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c0mfbqiierh28"]
+[gd_scene load_steps=16 format=3 uid="uid://c0mfbqiierh28"]
 
 [ext_resource type="PackedScene" uid="uid://wew2x6d2hfpm" path="res://Scenes/main_ship.tscn" id="1_qwqwi"]
 [ext_resource type="Script" path="res://Scripts/main_game.gd" id="1_vp66c"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dt5ydrg1168tf" path="res://Assets/Misc/starfieldbg.png" id="2_lhwbg"]
 [ext_resource type="AudioStream" uid="uid://b200lsbqki0i0" path="res://Assets/Sounds/draft-monk-ambience.mp3" id="3_2dy38"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="4_lfjep"]
+[ext_resource type="PackedScene" uid="uid://b7tlpyvmlvvbn" path="res://Scenes/enemy_ufo.tscn" id="5_kwt8r"]
 [ext_resource type="PackedScene" uid="uid://fghg0okmg1ea" path="res://Scenes/pause_menu.tscn" id="6_o63pf"]
 [ext_resource type="Texture2D" uid="uid://cst66vh0neffu" path="res://Assets/Sprites/laser_particle.png" id="8_pwkka"]
 
@@ -50,8 +51,39 @@ limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="enemyShip" parent="areaOne" instance=ExtResource("2_akhno")]
-position = Vector2(745, 138)
+position = Vector2(-966, 337)
 scale = Vector2(0.5, 0.5)
+
+[node name="enemyShip2" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(-872, 219)
+scale = Vector2(0.5, 0.5)
+
+[node name="enemyShip3" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(-862, 454)
+scale = Vector2(0.5, 0.5)
+
+[node name="enemyShip4" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(163, 1311)
+scale = Vector2(0.5, 0.5)
+
+[node name="enemyShip5" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(1836, 1136)
+scale = Vector2(0.5, 0.5)
+
+[node name="enemyUFO" parent="areaOne" instance=ExtResource("5_kwt8r")]
+position = Vector2(1732, 250)
+
+[node name="enemyUFO2" parent="areaOne" instance=ExtResource("5_kwt8r")]
+position = Vector2(2065, 421)
+
+[node name="enemyUFO3" parent="areaOne" instance=ExtResource("5_kwt8r")]
+position = Vector2(881, 1367)
+
+[node name="enemyUFO4" parent="areaOne" instance=ExtResource("5_kwt8r")]
+position = Vector2(-519, 1253)
+
+[node name="enemyUFO5" parent="areaOne" instance=ExtResource("5_kwt8r")]
+position = Vector2(770, 2386)
 
 [node name="NorthBoundary" type="StaticBody2D" parent="areaOne"]
 position = Vector2(26, 22)
@@ -174,6 +206,15 @@ fill_mode = 3
 [node name="fuelTimer" type="Timer" parent="HUD/fuelBG"]
 autostart = true
 
+[node name="mapBorder" type="ColorRect" parent="HUD"]
+visible = false
+offset_left = 202.0
+offset_top = 81.0
+offset_right = 4352.0
+offset_bottom = 4231.0
+scale = Vector2(0.15, 0.15)
+color = Color(0, 1, 1, 1)
+
 [node name="mapScreen" type="TextureRect" parent="HUD"]
 visible = false
 offset_left = 206.0
@@ -189,18 +230,36 @@ texture = ExtResource("2_lhwbg")
 scale = Vector2(5, 5)
 texture = ExtResource("8_pwkka")
 
-[node name="pauseMenu" parent="." instance=ExtResource("6_o63pf")]
+[node name="pauseMenu" parent="HUD" instance=ExtResource("6_o63pf")]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 502.0
-offset_top = 376.0
-offset_right = 502.0
-offset_bottom = 376.0
+offset_left = -10.0
+offset_top = -8.0
+offset_right = -10.0
+offset_bottom = -8.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="fuel" type="Label" parent="HUD"]
+offset_left = 969.0
+offset_top = 214.0
+offset_right = 1009.0
+offset_bottom = 237.0
+text = "Fuel"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="HUD/fuel"]
+layout_mode = 0
+offset_left = -483.0
+offset_top = 492.0
+offset_right = -431.0
+offset_bottom = 515.0
+text = "Health
+"
+horizontal_alignment = 1
 
 [connection signal="timeout" from="HUD/fuelBG/fuelTimer" to="HUD" method="_on_fuel_timer_timeout"]
