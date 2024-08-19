@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c0mfbqiierh28"]
+[gd_scene load_steps=26 format=3 uid="uid://c0mfbqiierh28"]
 
 [ext_resource type="PackedScene" uid="uid://wew2x6d2hfpm" path="res://Scenes/main_ship.tscn" id="1_qwqwi"]
 [ext_resource type="Script" path="res://Scripts/main_game.gd" id="1_vp66c"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cbjcxbaqwhi7y" path="res://Assets/Misc/starfieldbg2.png" id="3_x5644"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="4_lfjep"]
 [ext_resource type="Texture2D" uid="uid://c3opyvmtce5pa" path="res://Assets/Misc/starfieldbg3.png" id="4_r8tr7"]
+[ext_resource type="Texture2D" uid="uid://c3qfnwgx2wiyn" path="res://Assets/Misc/starfieldbg4.png" id="4_vl081"]
 [ext_resource type="PackedScene" uid="uid://b7tlpyvmlvvbn" path="res://Scenes/enemy_ufo.tscn" id="5_kwt8r"]
 [ext_resource type="PackedScene" uid="uid://fghg0okmg1ea" path="res://Scenes/pause_menu.tscn" id="6_o63pf"]
 [ext_resource type="PackedScene" uid="uid://did6o65r5yq0k" path="res://Scenes/enemy_spawner.tscn" id="8_awe5u"]
@@ -17,6 +18,8 @@
 [ext_resource type="PackedScene" uid="uid://cwgdlud6i5s80" path="res://Scenes/enemy_spawner_ufo.tscn" id="9_f37g5"]
 [ext_resource type="PackedScene" uid="uid://bpettjv505srp" path="res://Scenes/space_debris.tscn" id="10_0vrit"]
 [ext_resource type="PackedScene" uid="uid://owwjoe3ffpmq" path="res://Scenes/debris_spawner.tscn" id="12_vvknk"]
+[ext_resource type="PackedScene" uid="uid://b72uhwua3snba" path="res://Scenes/debris_tier2.tscn" id="14_qikvi"]
+[ext_resource type="PackedScene" uid="uid://cb01meirihwux" path="res://Scenes/debris_tier3.tscn" id="15_ix4fx"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qamp6"]
 normal = Vector2(1, 0)
@@ -47,6 +50,13 @@ script = ExtResource("2_yepnk")
 offset_right = 4096.0
 offset_bottom = 4096.0
 texture = ExtResource("2_ggxgd")
+
+[node name="PlanetLayer" type="ParallaxLayer" parent="areaOne/Background"]
+
+[node name="PlanetsBG" type="TextureRect" parent="areaOne/Background/PlanetLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_vl081")
 
 [node name="MidLayer" type="ParallaxLayer" parent="areaOne/Background"]
 
@@ -217,6 +227,12 @@ position = Vector2(1, 0)
 
 [node name="debris_spawner" parent="areaOne/debrisSpawner" instance=ExtResource("12_vvknk")]
 position = Vector2(2064, 2371)
+
+[node name="debrisTier2" parent="areaOne/debrisSpawner" instance=ExtResource("14_qikvi")]
+position = Vector2(674, 221)
+
+[node name="debrisTier3" parent="areaOne/debrisSpawner" instance=ExtResource("15_ix4fx")]
+position = Vector2(865, 194)
 
 [node name="Debris" type="Node2D" parent="areaOne"]
 
