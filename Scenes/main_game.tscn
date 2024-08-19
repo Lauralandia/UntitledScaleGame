@@ -1,15 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://c0mfbqiierh28"]
+[gd_scene load_steps=20 format=3 uid="uid://c0mfbqiierh28"]
 
 [ext_resource type="PackedScene" uid="uid://wew2x6d2hfpm" path="res://Scenes/main_ship.tscn" id="1_qwqwi"]
 [ext_resource type="Script" path="res://Scripts/main_game.gd" id="1_vp66c"]
-[ext_resource type="Texture2D" uid="uid://cixgie8n8uku7" path="res://Assets/Misc/starfieldbg-empty.png" id="2_2mnn0"]
 [ext_resource type="PackedScene" uid="uid://c26g7a6mhj8bh" path="res://Scenes/enemy_ship.tscn" id="2_akhno"]
+[ext_resource type="Texture2D" uid="uid://chrddemnbokv7" path="res://Assets/Misc/starfieldbg1.png" id="2_ggxgd"]
 [ext_resource type="Texture2D" uid="uid://dt5ydrg1168tf" path="res://Assets/Misc/starfieldbg.png" id="2_lhwbg"]
+[ext_resource type="Script" path="res://Scripts/Background.gd" id="2_yepnk"]
 [ext_resource type="AudioStream" uid="uid://b200lsbqki0i0" path="res://Assets/Sounds/draft-monk-ambience.mp3" id="3_2dy38"]
+[ext_resource type="Texture2D" uid="uid://cbjcxbaqwhi7y" path="res://Assets/Misc/starfieldbg2.png" id="3_x5644"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="4_lfjep"]
+[ext_resource type="Texture2D" uid="uid://c3opyvmtce5pa" path="res://Assets/Misc/starfieldbg3.png" id="4_r8tr7"]
 [ext_resource type="PackedScene" uid="uid://b7tlpyvmlvvbn" path="res://Scenes/enemy_ufo.tscn" id="5_kwt8r"]
 [ext_resource type="PackedScene" uid="uid://fghg0okmg1ea" path="res://Scenes/pause_menu.tscn" id="6_o63pf"]
 [ext_resource type="Texture2D" uid="uid://cst66vh0neffu" path="res://Assets/Sprites/laser_particle.png" id="8_pwkka"]
+[ext_resource type="PackedScene" uid="uid://bpettjv505srp" path="res://Scenes/space_debris.tscn" id="10_0vrit"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qamp6"]
 normal = Vector2(1, 0)
@@ -31,39 +35,65 @@ script = ExtResource("1_vp66c")
 
 [node name="areaOne" type="Node2D" parent="."]
 
-[node name="areaOneBG" type="TextureRect" parent="areaOne"]
-offset_left = -1421.0
-offset_top = -1.0
-offset_right = 2675.0
-offset_bottom = 4095.0
-texture = ExtResource("2_2mnn0")
+[node name="Background" type="ParallaxBackground" parent="areaOne"]
+script = ExtResource("2_yepnk")
 
-[node name="mainShip" parent="areaOne" instance=ExtResource("1_qwqwi")]
+[node name="BackLayer" type="ParallaxLayer" parent="areaOne/Background"]
+
+[node name="areaOneBG" type="TextureRect" parent="areaOne/Background/BackLayer"]
+offset_right = 4096.0
+offset_bottom = 4096.0
+texture = ExtResource("2_ggxgd")
+
+[node name="MidLayer" type="ParallaxLayer" parent="areaOne/Background"]
+
+[node name="BigStars" type="TextureRect" parent="areaOne/Background/MidLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_r8tr7")
+stretch_mode = 1
+
+[node name="FrontLayer" type="ParallaxLayer" parent="areaOne/Background"]
+motion_mirroring = Vector2(4096, 4096)
+
+[node name="StarLayer" type="TextureRect" parent="areaOne/Background/FrontLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_x5644")
+stretch_mode = 1
+
+[node name="mainShip" parent="areaOne" groups=["main_ship"] instance=ExtResource("1_qwqwi")]
 position = Vector2(505, 424)
 
 [node name="Camera2D" type="Camera2D" parent="areaOne/mainShip"]
 position = Vector2(-1, 0)
-limit_left = -1400
-limit_top = 0
-limit_right = 2600
-limit_bottom = 4000
+limit_left = 20
+limit_top = 20
+limit_right = 4080
+limit_bottom = 4080
 limit_smoothed = true
 position_smoothing_enabled = true
 
+[node name="BGMusic" type="AudioStreamPlayer" parent="areaOne/mainShip/Camera2D"]
+stream = ExtResource("3_2dy38")
+volume_db = 10.0
+autoplay = true
+bus = &"BG"
+
 [node name="enemyShip" parent="areaOne" instance=ExtResource("2_akhno")]
-position = Vector2(-966, 337)
+position = Vector2(1503, 455)
 scale = Vector2(0.5, 0.5)
 
 [node name="enemyShip2" parent="areaOne" instance=ExtResource("2_akhno")]
-position = Vector2(-872, 219)
+position = Vector2(1597, 337)
 scale = Vector2(0.5, 0.5)
 
 [node name="enemyShip3" parent="areaOne" instance=ExtResource("2_akhno")]
-position = Vector2(-862, 454)
+position = Vector2(1607, 572)
 scale = Vector2(0.5, 0.5)
 
 [node name="enemyShip4" parent="areaOne" instance=ExtResource("2_akhno")]
-position = Vector2(163, 1311)
+position = Vector2(2315, 847)
 scale = Vector2(0.5, 0.5)
 
 [node name="enemyShip5" parent="areaOne" instance=ExtResource("2_akhno")]
@@ -71,22 +101,27 @@ position = Vector2(1836, 1136)
 scale = Vector2(0.5, 0.5)
 
 [node name="enemyUFO" parent="areaOne" instance=ExtResource("5_kwt8r")]
-position = Vector2(1732, 250)
+position = Vector2(2539, 294)
 
 [node name="enemyUFO2" parent="areaOne" instance=ExtResource("5_kwt8r")]
-position = Vector2(2065, 421)
+position = Vector2(2872, 465)
 
 [node name="enemyUFO3" parent="areaOne" instance=ExtResource("5_kwt8r")]
 position = Vector2(881, 1367)
 
 [node name="enemyUFO4" parent="areaOne" instance=ExtResource("5_kwt8r")]
-position = Vector2(-519, 1253)
+position = Vector2(1550, 1364)
 
 [node name="enemyUFO5" parent="areaOne" instance=ExtResource("5_kwt8r")]
 position = Vector2(770, 2386)
 
+[node name="Debris" type="Node2D" parent="areaOne"]
+
+[node name="spaceDebris" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(738, 550)
+
 [node name="NorthBoundary" type="StaticBody2D" parent="areaOne"]
-position = Vector2(26, 22)
+position = Vector2(1869, 29)
 rotation = 1.5708
 collision_layer = 512
 collision_mask = 3
@@ -96,7 +131,7 @@ position = Vector2(0, 28)
 shape = SubResource("WorldBoundaryShape2D_qamp6")
 
 [node name="SouthBoundary" type="StaticBody2D" parent="areaOne"]
-position = Vector2(528, 3953)
+position = Vector2(1825, 4004)
 rotation = -1.5708
 collision_layer = 512
 collision_mask = 3
@@ -106,7 +141,7 @@ position = Vector2(0, 28)
 shape = SubResource("WorldBoundaryShape2D_qamp6")
 
 [node name="EastBoundary" type="StaticBody2D" parent="areaOne"]
-position = Vector2(2519, 1434)
+position = Vector2(4002, 1587)
 rotation = 3.14159
 collision_layer = 512
 collision_mask = 3
@@ -116,7 +151,7 @@ position = Vector2(0, 28)
 shape = SubResource("WorldBoundaryShape2D_qamp6")
 
 [node name="WestBoundary" type="StaticBody2D" parent="areaOne"]
-position = Vector2(-1368, 893)
+position = Vector2(30, 1924)
 collision_layer = 512
 collision_mask = 3
 
@@ -265,9 +300,18 @@ offset_bottom = -8.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="BGMusic" type="AudioStreamPlayer2D" parent="HUD"]
-stream = ExtResource("3_2dy38")
-autoplay = true
-bus = &"BG"
+[node name="DebrisCounter" type="Label" parent="HUD"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -242.0
+offset_top = -28.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Space Debris Collected: "
 
 [connection signal="timeout" from="HUD/fuelBG/fuelTimer" to="HUD" method="_on_fuel_timer_timeout"]

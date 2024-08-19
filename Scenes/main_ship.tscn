@@ -1,9 +1,59 @@
-[gd_scene load_steps=7 format=3 uid="uid://wew2x6d2hfpm"]
+[gd_scene load_steps=19 format=3 uid="uid://wew2x6d2hfpm"]
 
 [ext_resource type="Script" path="res://Scripts/mainShip.gd" id="1_d2fvg"]
+[ext_resource type="Shader" uid="uid://dms6oi6hguo1b" path="res://Scripts/hit_flash.tres" id="2_8olmo"]
+[ext_resource type="AudioStream" uid="uid://b7ou7kjvwd8xj" path="res://Assets/Sounds/sfx_shieldUp.ogg" id="2_ald15"]
 [ext_resource type="Texture2D" uid="uid://bcw6ljyfd5bq" path="res://Assets/Sprites/playerShip1_blue.png" id="2_ieq62"]
+[ext_resource type="AudioStream" uid="uid://budehfhk2j5c2" path="res://Assets/Sounds/collect-loot.wav" id="2_jiy5p"]
 [ext_resource type="PackedScene" uid="uid://cq0lmch7yi4se" path="res://Scenes/laser_beam.tscn" id="3_6bhj3"]
 [ext_resource type="AudioStream" uid="uid://dki6qhik1qqxc" path="res://Assets/Sounds/main_ship_hit.wav" id="4_ausdj"]
+[ext_resource type="Texture2D" uid="uid://cypvwct15rqhk" path="res://Assets/Sprites/ship_thruster.png" id="5_7m0mv"]
+[ext_resource type="Texture2D" uid="uid://dpocmy5i76ukk" path="res://Assets/Sprites/wingBlue_6.png" id="6_wrobd"]
+[ext_resource type="Texture2D" uid="uid://bkr2830p26iaa" path="res://Assets/Sprites/wingRed_2.png" id="7_24fx5"]
+[ext_resource type="Texture2D" uid="uid://b2ikkf5hs66x4" path="res://Assets/Sprites/cockpitBlue_3.png" id="8_5vde1"]
+[ext_resource type="Texture2D" uid="uid://c1l1kob8wf7u0" path="res://Assets/Sprites/cockpitRed_0.png" id="9_ua1jm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p4xah"]
+shader = ExtResource("2_8olmo")
+shader_parameter/Enabled = false
+shader_parameter/Tint = Color(1, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_oqbr4"]
+resource_name = "hit_flash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ah3oi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k7hrg"]
+_data = {
+"RESET": SubResource("Animation_ah3oi"),
+"hit_flash": SubResource("Animation_oqbr4")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_co4py"]
 size = Vector2(38, 48)
@@ -12,13 +62,28 @@ size = Vector2(38, 48)
 size = Vector2(46, 56)
 
 [node name="mainShip" type="CharacterBody2D"]
-collision_mask = 514
+collision_mask = 642
 script = ExtResource("1_d2fvg")
 
+[node name="collectResource" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_jiy5p")
+volume_db = 5.0
+
+[node name="upgradeTierSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ald15")
+volume_db = 15.0
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_p4xah")
 rotation = 1.5708
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ieq62")
+
+[node name="HitFlashAnimation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_k7hrg")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_co4py")
@@ -34,5 +99,69 @@ shape = SubResource("RectangleShape2D_bu8wm")
 
 [node name="shipHit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_ausdj")
+
+[node name="ship_thruster" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-25, 1.13687e-13)
+rotation = 1.5708
+scale = Vector2(0.5, 0.75)
+texture = ExtResource("5_7m0mv")
+
+[node name="ship_thruster2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-34, -1)
+rotation = 1.5708
+scale = Vector2(1.5, 2.25)
+texture = ExtResource("5_7m0mv")
+
+[node name="right_wing_t1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, 44)
+rotation = 3.14159
+texture = ExtResource("6_wrobd")
+flip_v = true
+
+[node name="right_wing_t2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(41, 104)
+rotation = 3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("7_24fx5")
+flip_h = true
+
+[node name="left_wing_t1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, -43)
+rotation = 3.14159
+texture = ExtResource("6_wrobd")
+
+[node name="left_wing_t2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(39, -103)
+rotation = 3.14159
+scale = Vector2(2, 2)
+texture = ExtResource("7_24fx5")
+flip_h = true
+flip_v = true
+
+[node name="cockpit_t1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(13, 0)
+rotation = -1.5708
+texture = ExtResource("8_5vde1")
+
+[node name="cockpit_t2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(65, 0)
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("9_ua1jm")
+
+[node name="ship_thruster3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-34, 0)
+rotation = 1.5708
+scale = Vector2(2, 3)
+texture = ExtResource("5_7m0mv")
 
 [connection signal="body_entered" from="hitBox" to="." method="_on_hit_box_body_entered"]

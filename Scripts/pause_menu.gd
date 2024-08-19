@@ -19,7 +19,7 @@ func _on_sfx_vol_slider_value_changed(value):
 	AudioServer.set_bus_volume_db(bus_index_sfx, linear_to_db(sfx_vol_slider.value))
 
 func _on_resume_pressed():
-	get_parent().pauseMenu()
+	get_parent().get_parent().pauseMenu()
 
 func _on_start_over_pressed():
 	get_parent().get_parent().get_parent().restartGame()

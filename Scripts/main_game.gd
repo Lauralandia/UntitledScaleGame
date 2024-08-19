@@ -24,7 +24,7 @@ func pauseMenu():
 	paused = !paused
 
 func mapOverlay():
-	marker.position.x = get_node("areaOne").get_node("mainShip").position.x+1400
+	marker.position.x = get_node("areaOne").get_node("mainShip").position.x
 	marker.position.y = get_node("areaOne").get_node("mainShip").position.y
 	if map:
 		map_border.hide()

@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://bpettjv505srp"]
+
+[ext_resource type="Script" path="res://Scripts/spaceDebris.gd" id="1_51s6h"]
+[ext_resource type="Shader" uid="uid://dms6oi6hguo1b" path="res://Scripts/hit_flash.tres" id="2_nm6xm"]
+[ext_resource type="Texture2D" uid="uid://uqhrvwtmcvxt" path="res://Assets/Sprites/engine4.png" id="2_tmyda"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ttu5"]
+resource_local_to_scene = true
+shader = ExtResource("2_nm6xm")
+shader_parameter/Enabled = false
+shader_parameter/Tint = Color(1, 1, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wnvpy"]
+radius = 19.0
+
+[sub_resource type="Animation" id="Animation_6wbka"]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_5qjp5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u3ubq"]
+_data = {
+"RESET": SubResource("Animation_5qjp5"),
+"flash": SubResource("Animation_6wbka")
+}
+
+[node name="spaceDebris" type="Area2D"]
+collision_layer = 128
+script = ExtResource("1_51s6h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2ttu5")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tmyda")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wnvpy")
+
+[node name="AP" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u3ubq")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
