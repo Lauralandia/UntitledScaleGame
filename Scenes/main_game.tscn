@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c0mfbqiierh28"]
+[gd_scene load_steps=23 format=3 uid="uid://c0mfbqiierh28"]
 
 [ext_resource type="PackedScene" uid="uid://wew2x6d2hfpm" path="res://Scenes/main_ship.tscn" id="1_qwqwi"]
 [ext_resource type="Script" path="res://Scripts/main_game.gd" id="1_vp66c"]
@@ -12,8 +12,11 @@
 [ext_resource type="Texture2D" uid="uid://c3opyvmtce5pa" path="res://Assets/Misc/starfieldbg3.png" id="4_r8tr7"]
 [ext_resource type="PackedScene" uid="uid://b7tlpyvmlvvbn" path="res://Scenes/enemy_ufo.tscn" id="5_kwt8r"]
 [ext_resource type="PackedScene" uid="uid://fghg0okmg1ea" path="res://Scenes/pause_menu.tscn" id="6_o63pf"]
+[ext_resource type="PackedScene" uid="uid://did6o65r5yq0k" path="res://Scenes/enemy_spawner.tscn" id="8_awe5u"]
 [ext_resource type="Texture2D" uid="uid://cst66vh0neffu" path="res://Assets/Sprites/laser_particle.png" id="8_pwkka"]
+[ext_resource type="PackedScene" uid="uid://cwgdlud6i5s80" path="res://Scenes/enemy_spawner_ufo.tscn" id="9_f37g5"]
 [ext_resource type="PackedScene" uid="uid://bpettjv505srp" path="res://Scenes/space_debris.tscn" id="10_0vrit"]
+[ext_resource type="PackedScene" uid="uid://owwjoe3ffpmq" path="res://Scenes/debris_spawner.tscn" id="12_vvknk"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qamp6"]
 normal = Vector2(1, 0)
@@ -80,111 +83,140 @@ volume_db = 10.0
 autoplay = true
 bus = &"BG"
 
-[node name="enemyShip" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemySpawner" type="Node2D" parent="areaOne"]
+
+[node name="enemySpawner" parent="areaOne/enemySpawner" instance=ExtResource("8_awe5u")]
+position = Vector2(3465, 1386)
+spawn_range = 300
+
+[node name="enemySpawner3" parent="areaOne/enemySpawner" instance=ExtResource("8_awe5u")]
+position = Vector2(2675, 3572)
+spawn_range = 300
+
+[node name="enemySpawner2" parent="areaOne/enemySpawner" instance=ExtResource("8_awe5u")]
+position = Vector2(3452, 2859)
+spawn_range = 300
+
+[node name="enemySpawnerUFO" parent="areaOne/enemySpawner" instance=ExtResource("9_f37g5")]
+position = Vector2(2068, 2353)
+
+[node name="enemySpawnerUFO2" parent="areaOne/enemySpawner" instance=ExtResource("9_f37g5")]
+position = Vector2(829, 3350)
+spawn_range = 300
+
+[node name="Enemies" type="Node2D" parent="areaOne"]
+
+[node name="enemyShip" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(1503, 455)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyShip2" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemyShip2" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(1597, 337)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyShip3" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemyShip3" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(1607, 572)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyShip4" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemyShip4" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(2315, 847)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyShip5" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemyShip5" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(1836, 1136)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyShip6" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemyShip6" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(2407, 2053)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyShip7" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemyShip7" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(1836, 2097)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyShip8" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemyShip8" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(2454, 2278)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyShip9" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemyShip9" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(2061, 2567)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyShip10" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemyShip10" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(724, 3387)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyShip11" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemyShip11" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(835, 3572)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyShip12" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemyShip12" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(1201, 3538)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyShip13" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemyShip13" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(3399, 3716)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyShip14" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemyShip14" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(3758, 3044)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyShip15" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemyShip15" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(3805, 1710)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyShip16" parent="areaOne" instance=ExtResource("2_akhno")]
+[node name="enemyShip16" parent="areaOne/Enemies" instance=ExtResource("2_akhno")]
 position = Vector2(3771, 1290)
 scale = Vector2(0.5, 0.5)
 
-[node name="enemyUFO" parent="areaOne" instance=ExtResource("5_kwt8r")]
+[node name="enemyUFO" parent="areaOne/Enemies" instance=ExtResource("5_kwt8r")]
 position = Vector2(2539, 294)
 
-[node name="enemyUFO2" parent="areaOne" instance=ExtResource("5_kwt8r")]
+[node name="enemyUFO2" parent="areaOne/Enemies" instance=ExtResource("5_kwt8r")]
 position = Vector2(2872, 465)
 
-[node name="enemyUFO3" parent="areaOne" instance=ExtResource("5_kwt8r")]
+[node name="enemyUFO3" parent="areaOne/Enemies" instance=ExtResource("5_kwt8r")]
 position = Vector2(881, 1367)
 
-[node name="enemyUFO4" parent="areaOne" instance=ExtResource("5_kwt8r")]
+[node name="enemyUFO4" parent="areaOne/Enemies" instance=ExtResource("5_kwt8r")]
 position = Vector2(1550, 1364)
 
-[node name="enemyUFO8" parent="areaOne" instance=ExtResource("5_kwt8r")]
+[node name="enemyUFO8" parent="areaOne/Enemies" instance=ExtResource("5_kwt8r")]
 position = Vector2(1906, 1334)
 
-[node name="enemyUFO5" parent="areaOne" instance=ExtResource("5_kwt8r")]
+[node name="enemyUFO5" parent="areaOne/Enemies" instance=ExtResource("5_kwt8r")]
 position = Vector2(770, 2386)
 
-[node name="enemyUFO6" parent="areaOne" instance=ExtResource("5_kwt8r")]
+[node name="enemyUFO6" parent="areaOne/Enemies" instance=ExtResource("5_kwt8r")]
 position = Vector2(770, 2695)
 
-[node name="enemyUFO7" parent="areaOne" instance=ExtResource("5_kwt8r")]
+[node name="enemyUFO7" parent="areaOne/Enemies" instance=ExtResource("5_kwt8r")]
 position = Vector2(1234, 2695)
 
-[node name="enemyUFO9" parent="areaOne" instance=ExtResource("5_kwt8r")]
+[node name="enemyUFO9" parent="areaOne/Enemies" instance=ExtResource("5_kwt8r")]
 position = Vector2(2104, 2084)
 
-[node name="enemyUFO10" parent="areaOne" instance=ExtResource("5_kwt8r")]
+[node name="enemyUFO10" parent="areaOne/Enemies" instance=ExtResource("5_kwt8r")]
 position = Vector2(3055, 2558)
 
-[node name="enemyUFO11" parent="areaOne" instance=ExtResource("5_kwt8r")]
+[node name="enemyUFO11" parent="areaOne/Enemies" instance=ExtResource("5_kwt8r")]
 position = Vector2(3082, 3415)
 
-[node name="enemyUFO12" parent="areaOne" instance=ExtResource("5_kwt8r")]
+[node name="enemyUFO12" parent="areaOne/Enemies" instance=ExtResource("5_kwt8r")]
 position = Vector2(3435, 1651)
 
-[node name="enemyUFO13" parent="areaOne" instance=ExtResource("5_kwt8r")]
+[node name="enemyUFO13" parent="areaOne/Enemies" instance=ExtResource("5_kwt8r")]
 position = Vector2(3774, 428)
 
-[node name="enemyUFO14" parent="areaOne" instance=ExtResource("5_kwt8r")]
+[node name="enemyUFO14" parent="areaOne/Enemies" instance=ExtResource("5_kwt8r")]
 position = Vector2(3677, 2316)
+
+[node name="debrisSpawner" type="Node2D" parent="areaOne"]
+position = Vector2(1, 0)
+
+[node name="debris_spawner" parent="areaOne/debrisSpawner" instance=ExtResource("12_vvknk")]
+position = Vector2(2064, 2371)
 
 [node name="Debris" type="Node2D" parent="areaOne"]
 
