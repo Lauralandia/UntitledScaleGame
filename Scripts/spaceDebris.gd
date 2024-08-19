@@ -12,7 +12,6 @@ func _physics_process(delta):
 		if AP != null && !AP.is_playing():
 			AP.play("flash")
 
-
 func _on_body_entered(body):
 	if body.is_in_group("main_ship"):
 		body.get_node("collectResource").play()

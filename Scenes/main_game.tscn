@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c0mfbqiierh28"]
+[gd_scene load_steps=24 format=3 uid="uid://c0mfbqiierh28"]
 
 [ext_resource type="PackedScene" uid="uid://wew2x6d2hfpm" path="res://Scenes/main_ship.tscn" id="1_qwqwi"]
 [ext_resource type="Script" path="res://Scripts/main_game.gd" id="1_vp66c"]
@@ -14,6 +14,14 @@
 [ext_resource type="PackedScene" uid="uid://fghg0okmg1ea" path="res://Scenes/pause_menu.tscn" id="6_o63pf"]
 [ext_resource type="Texture2D" uid="uid://cst66vh0neffu" path="res://Assets/Sprites/laser_particle.png" id="8_pwkka"]
 [ext_resource type="PackedScene" uid="uid://bpettjv505srp" path="res://Scenes/space_debris.tscn" id="10_0vrit"]
+[ext_resource type="PackedScene" uid="uid://did6o65r5yq0k" path="res://Scenes/enemy_spawner.tscn" id="10_xgud1"]
+[ext_resource type="PackedScene" uid="uid://cwgdlud6i5s80" path="res://Scenes/enemy_spawner_ufo.tscn" id="11_vxhq3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bioie"]
+radius = 304.041
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tmjat"]
+radius = 584.625
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qamp6"]
 normal = Vector2(1, 0)
@@ -114,6 +122,22 @@ position = Vector2(1550, 1364)
 
 [node name="enemyUFO5" parent="areaOne" instance=ExtResource("5_kwt8r")]
 position = Vector2(770, 2386)
+
+[node name="EnemySpawners" type="Node2D" parent="areaOne"]
+
+[node name="enemySpawner" parent="areaOne/EnemySpawners" instance=ExtResource("10_xgud1")]
+position = Vector2(3695, 361)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areaOne/EnemySpawners/enemySpawner"]
+position = Vector2(31, 2)
+shape = SubResource("CircleShape2D_bioie")
+
+[node name="enemySpawnerUFO" parent="areaOne/EnemySpawners" instance=ExtResource("11_vxhq3")]
+position = Vector2(2127, 2368)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="areaOne/EnemySpawners/enemySpawnerUFO"]
+position = Vector2(1, -192)
+shape = SubResource("CircleShape2D_tmjat")
 
 [node name="Debris" type="Node2D" parent="areaOne"]
 
@@ -314,4 +338,5 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "Space Debris Collected: "
 
+[connection signal="body_entered" from="areaOne/EnemySpawners/enemySpawner" to="areaOne/EnemySpawners/enemySpawner" method="_on_body_entered"]
 [connection signal="timeout" from="HUD/fuelBG/fuelTimer" to="HUD" method="_on_fuel_timer_timeout"]
