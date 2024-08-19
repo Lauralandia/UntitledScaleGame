@@ -1,11 +1,8 @@
 extends CharacterBody2D
 
-var basic_gunfire :  PackedScene = preload("res://Scenes/gun_fire.tscn")
 var enemy_health = 100
-
 @onready var gun_one = $gunOne
 @onready var gun_two = $gunTwo
-
 @onready var target_ship = get_parent().get_node("mainShip")
 var target_pos
 var orig_pos
@@ -37,6 +34,7 @@ func _physics_process(delta) -> void:
 
 func fire_guns():
 	if (position.distance_to(target_ship.global_position) <= aggro_range):
+		var basic_gunfire :  PackedScene = load("res://Scenes/gun_fire.tscn")
 		var proj_one = basic_gunfire.instantiate()
 		get_parent().add_child(proj_one)
 		proj_one.global_position = gun_one.global_position
@@ -46,6 +44,5 @@ func fire_guns():
 		proj_two.global_position = gun_two.global_position
 		proj_two.dir = (target_ship.global_position - global_position).normalized()
 	
-
 func _on_gun_fire_timeout():
 	fire_guns()

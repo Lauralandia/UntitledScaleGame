@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/main_handler.gd" id="1_ngpfn"]
 [ext_resource type="Texture2D" uid="uid://itsh6r7y2qq7" path="res://Assets/Misc/space_bg_2.jpg" id="2_8dmf7"]
-[ext_resource type="AudioStream" uid="uid://c3e4gfb5fx3qo" path="res://Assets/Sounds/background_music_1.wav" id="3_c0ntn"]
+[ext_resource type="AudioStream" uid="uid://bpcej831ty03f" path="res://Assets/Sounds/background_music_2.mp3" id="3_f5khm"]
 [ext_resource type="Script" path="res://Scripts/settingsMenu.gd" id="4_3723g"]
 
 [node name="mainHandler" type="Control"]
@@ -26,12 +26,15 @@ grow_vertical = 2
 
 [node name="Title" type="Label" parent="mainMenu"]
 z_index = 1
-layout_mode = 2
-offset_top = 70.0
-offset_right = 1025.0
-offset_bottom = 239.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -512.5
+offset_top = 71.0
+offset_right = 512.5
+offset_bottom = 240.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0.945098, 0.952941, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -77,6 +80,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="mainMenu/MarginContainer/VBoxContainer"]
+stream = ExtResource("3_f5khm")
+volume_db = 10.0
+autoplay = true
+
 [node name="newGame" type="Button" parent="mainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_pressed_color = Color(0, 0.946652, 0.952948, 1)
@@ -98,11 +106,6 @@ theme_override_colors/font_hover_color = Color(0, 0.945098, 0.952941, 1)
 theme_override_font_sizes/font_size = 30
 text = "Exit Game
 "
-
-[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="mainMenu"]
-stream = ExtResource("3_c0ntn")
-autoplay = true
-bus = &"BG"
 
 [node name="settingsMenu" type="Control" parent="."]
 visible = false
