@@ -1,10 +1,11 @@
 extends Node2D
 
-@onready var pause_menu = $pauseMenu
+@onready var pause_menu = $HUD/pauseMenu
 var paused = false
 var map = false
 @onready var map_overlay = $HUD/mapScreen
 @onready var marker = $HUD/mapScreen/marker
+@onready var map_border = $HUD/mapBorder
 
 func _process(delta):
 	if Input.is_action_just_pressed("pause"):
@@ -26,8 +27,10 @@ func mapOverlay():
 	marker.position.y = get_node("areaOne").get_node("mainShip").position.y
 	if map:
 		map_overlay.hide()
+		map_border.hide()
 		Engine.time_scale = 1
 	else:
 		map_overlay.show()
+		map_border.show()
 		Engine.time_scale = 0
 	map = !map

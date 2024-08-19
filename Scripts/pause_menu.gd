@@ -22,7 +22,7 @@ func _on_resume_pressed():
 	get_parent().pauseMenu()
 
 func _on_start_over_pressed():
-	get_parent().get_parent().restartGame()
+	get_parent().get_parent().get_parent().restartGame()
 
 func _on_exit_pressed():
 	get_tree().quit()

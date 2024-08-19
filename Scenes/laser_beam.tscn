@@ -55,8 +55,8 @@ curve = SubResource("Curve_g58pq")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k78r3"]
 lifetime_randomness = 1.0
 particle_flag_disable_z = true
-emission_shape_offset = Vector3(200, 0, 0)
-emission_shape_scale = Vector3(200, 1, 1)
+emission_shape_offset = Vector3(100, 0, 0)
+emission_shape_scale = Vector3(100, 1, 1)
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
 gravity = Vector3(0, 0, 0)
@@ -75,7 +75,7 @@ glow_blend_mode = 0
 
 [node name="laserBeam" type="RayCast2D" groups=["laser_beam"]]
 position = Vector2(60, 113)
-target_position = Vector2(400, 0)
+target_position = Vector2(200, 0)
 collision_mask = 2
 collide_with_areas = true
 script = ExtResource("1_66d6e")
