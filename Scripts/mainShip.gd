@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 
 	if direction != Vector2.ZERO:
 		if upgrade_tier > 5:
-			MAX_SPEED = 1000
+			MAX_SPEED = 700
 			ship_thruster_3.show()
 		elif upgrade_tier > 2:
 			MAX_SPEED = 500
@@ -42,10 +42,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	look_at(get_global_mouse_position())
 	
-func _unhandled_key_input(event):
-	if Input.is_action_just_pressed("interact"):
-		upgrade_tier += 1
-		update_tier()
+#func _unhandled_key_input(event):
+	#if Input.is_action_just_pressed("interact"):
+		#upgrade_tier += 1
+		#update_tier()
 
 func update_tier ():
 	if (upgrade_resource >= 90):
@@ -54,11 +54,11 @@ func update_tier ():
 		upgrade_tier = 5
 	elif (upgrade_resource >= 50):
 		upgrade_tier = 4
-	elif (upgrade_resource >= 15):
+	elif (upgrade_resource >= 20):
 		upgrade_tier = 3
-	elif (upgrade_resource >= 10):
+	elif (upgrade_resource >= 15):
 		upgrade_tier = 2
-	elif (upgrade_resource >= 5):
+	elif (upgrade_resource >= 10):
 		upgrade_tier = 1
 	
 	match (upgrade_tier):

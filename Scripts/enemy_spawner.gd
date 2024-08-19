@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var spawn_timer = $spawnTimer
 @onready var target_ship = get_parent().get_parent().get_node("mainShip")
-var spawn_range = 500
+@export var spawn_range = 500
 
 func _physics_process(delta) -> void:
 	var dist_to_targ = global_position.distance_to(target_ship.global_position)
@@ -12,7 +12,7 @@ func _physics_process(delta) -> void:
 func _on_spawn_timer_timeout():
 	var basic_enemy :  PackedScene = load("res://Scenes/enemy_ship.tscn")
 	var new_enemy = basic_enemy.instantiate()
-	get_parent().get_parent().add_child(new_enemy)
+	get_parent().get_parent().get_node("Enemies").add_child(new_enemy)
 	var t = Transform2D()
 	t.x *= 0.5
 	t.y *= 0.5

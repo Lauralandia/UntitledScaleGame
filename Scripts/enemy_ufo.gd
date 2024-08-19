@@ -3,7 +3,7 @@ extends CharacterBody2D
 var enemy_health = 100
 @onready var gun_one = $gunOne
 @onready var gun_two = $gunTwo
-@onready var target_ship = get_parent().get_node("mainShip")
+@onready var target_ship = get_parent().get_parent().get_node("mainShip")
 var target_pos
 var orig_pos
 var speed = 100
