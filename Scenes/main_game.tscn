@@ -124,11 +124,6 @@ collision_mask = 3
 position = Vector2(0, 28)
 shape = SubResource("WorldBoundaryShape2D_qamp6")
 
-[node name="BGMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_2dy38")
-autoplay = true
-bus = &"BG"
-
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("4_lfjep")
 
@@ -165,6 +160,16 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_k1h4g")
 step = 1.0
 value = 50.0
 show_percentage = false
+
+[node name="Health" type="Label" parent="HUD/healthBG"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = -24.0
+offset_right = 181.0
+offset_bottom = -1.0
+text = "Health
+"
+horizontal_alignment = 1
 
 [node name="fuelBG" type="ColorRect" parent="HUD"]
 custom_minimum_size = Vector2(40, 290)
@@ -203,30 +208,46 @@ step = 1.0
 value = 1000.0
 fill_mode = 3
 
+[node name="fuel" type="Label" parent="HUD/fuelBG"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = -26.0
+offset_right = 49.0
+offset_bottom = -3.0
+text = "Fuel"
+horizontal_alignment = 1
+
 [node name="fuelTimer" type="Timer" parent="HUD/fuelBG"]
 autostart = true
 
 [node name="mapBorder" type="ColorRect" parent="HUD"]
 visible = false
-offset_left = 202.0
-offset_top = 81.0
-offset_right = 4352.0
-offset_bottom = 4231.0
-scale = Vector2(0.15, 0.15)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -311.5
+offset_top = -311.5
+offset_right = 311.5
+offset_bottom = 311.5
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 1, 1, 1)
 
-[node name="mapScreen" type="TextureRect" parent="HUD"]
-visible = false
-offset_left = 206.0
-offset_top = 85.0
-offset_right = 4302.0
-offset_bottom = 4181.0
+[node name="mapScreen" type="TextureRect" parent="HUD/mapBorder"]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 4101.0
+offset_bottom = 4101.0
 scale = Vector2(0.15, 0.15)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_lhwbg")
+stretch_mode = 3
 
-[node name="marker" type="Sprite2D" parent="HUD/mapScreen"]
+[node name="marker" type="Sprite2D" parent="HUD/mapBorder/mapScreen"]
 scale = Vector2(5, 5)
 texture = ExtResource("8_pwkka")
 
@@ -244,22 +265,9 @@ offset_bottom = -8.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="fuel" type="Label" parent="HUD"]
-offset_left = 969.0
-offset_top = 214.0
-offset_right = 1009.0
-offset_bottom = 237.0
-text = "Fuel"
-horizontal_alignment = 1
-
-[node name="Label" type="Label" parent="HUD/fuel"]
-layout_mode = 0
-offset_left = -483.0
-offset_top = 492.0
-offset_right = -431.0
-offset_bottom = 515.0
-text = "Health
-"
-horizontal_alignment = 1
+[node name="BGMusic" type="AudioStreamPlayer2D" parent="HUD"]
+stream = ExtResource("3_2dy38")
+autoplay = true
+bus = &"BG"
 
 [connection signal="timeout" from="HUD/fuelBG/fuelTimer" to="HUD" method="_on_fuel_timer_timeout"]
