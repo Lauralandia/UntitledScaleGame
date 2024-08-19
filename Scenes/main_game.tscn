@@ -108,6 +108,50 @@ scale = Vector2(0.5, 0.5)
 position = Vector2(1836, 1136)
 scale = Vector2(0.5, 0.5)
 
+[node name="enemyShip6" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(2407, 2053)
+scale = Vector2(0.5, 0.5)
+
+[node name="enemyShip7" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(1836, 2097)
+scale = Vector2(0.5, 0.5)
+
+[node name="enemyShip8" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(2454, 2278)
+scale = Vector2(0.5, 0.5)
+
+[node name="enemyShip9" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(2061, 2567)
+scale = Vector2(0.5, 0.5)
+
+[node name="enemyShip10" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(724, 3387)
+scale = Vector2(0.5, 0.5)
+
+[node name="enemyShip11" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(835, 3572)
+scale = Vector2(0.5, 0.5)
+
+[node name="enemyShip12" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(1201, 3538)
+scale = Vector2(0.5, 0.5)
+
+[node name="enemyShip13" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(3399, 3716)
+scale = Vector2(0.5, 0.5)
+
+[node name="enemyShip14" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(3758, 3044)
+scale = Vector2(0.5, 0.5)
+
+[node name="enemyShip15" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(3805, 1710)
+scale = Vector2(0.5, 0.5)
+
+[node name="enemyShip16" parent="areaOne" instance=ExtResource("2_akhno")]
+position = Vector2(3771, 1290)
+scale = Vector2(0.5, 0.5)
+
 [node name="enemyUFO" parent="areaOne" instance=ExtResource("5_kwt8r")]
 position = Vector2(2539, 294)
 
@@ -120,29 +164,184 @@ position = Vector2(881, 1367)
 [node name="enemyUFO4" parent="areaOne" instance=ExtResource("5_kwt8r")]
 position = Vector2(1550, 1364)
 
+[node name="enemyUFO8" parent="areaOne" instance=ExtResource("5_kwt8r")]
+position = Vector2(1906, 1334)
+
 [node name="enemyUFO5" parent="areaOne" instance=ExtResource("5_kwt8r")]
 position = Vector2(770, 2386)
 
-[node name="EnemySpawners" type="Node2D" parent="areaOne"]
+[node name="enemyUFO6" parent="areaOne" instance=ExtResource("5_kwt8r")]
+position = Vector2(770, 2695)
 
-[node name="enemySpawner" parent="areaOne/EnemySpawners" instance=ExtResource("10_xgud1")]
-position = Vector2(3695, 361)
+[node name="enemyUFO7" parent="areaOne" instance=ExtResource("5_kwt8r")]
+position = Vector2(1234, 2695)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="areaOne/EnemySpawners/enemySpawner"]
-position = Vector2(31, 2)
-shape = SubResource("CircleShape2D_bioie")
+[node name="enemyUFO9" parent="areaOne" instance=ExtResource("5_kwt8r")]
+position = Vector2(2104, 2084)
 
-[node name="enemySpawnerUFO" parent="areaOne/EnemySpawners" instance=ExtResource("11_vxhq3")]
-position = Vector2(2127, 2368)
+[node name="enemyUFO10" parent="areaOne" instance=ExtResource("5_kwt8r")]
+position = Vector2(3055, 2558)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="areaOne/EnemySpawners/enemySpawnerUFO"]
-position = Vector2(1, -192)
-shape = SubResource("CircleShape2D_tmjat")
+[node name="enemyUFO11" parent="areaOne" instance=ExtResource("5_kwt8r")]
+position = Vector2(3082, 3415)
+
+[node name="enemyUFO12" parent="areaOne" instance=ExtResource("5_kwt8r")]
+position = Vector2(3435, 1651)
+
+[node name="enemyUFO13" parent="areaOne" instance=ExtResource("5_kwt8r")]
+position = Vector2(3774, 428)
+
+[node name="enemyUFO14" parent="areaOne" instance=ExtResource("5_kwt8r")]
+position = Vector2(3677, 2316)
 
 [node name="Debris" type="Node2D" parent="areaOne"]
 
 [node name="spaceDebris" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
 position = Vector2(738, 550)
+
+[node name="spaceDebris2" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1034, 385)
+
+[node name="spaceDebris3" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1384, 453)
+
+[node name="spaceDebris4" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1883, 482)
+
+[node name="spaceDebris5" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1957, 617)
+
+[node name="spaceDebris6" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(2052, 306)
+
+[node name="spaceDebris7" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(2913, 339)
+
+[node name="spaceDebris8" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(2950, 544)
+
+[node name="spaceDebris9" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(3437, 1272)
+
+[node name="spaceDebris10" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(3302, 1399)
+
+[node name="spaceDebris11" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(3636, 1539)
+
+[node name="spaceDebris12" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(960, 1539)
+
+[node name="spaceDebris13" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1000, 1305)
+
+[node name="spaceDebris14" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1219, 1401)
+
+[node name="spaceDebris15" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1476, 1270)
+
+[node name="spaceDebris16" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1723, 1522)
+
+[node name="spaceDebris17" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1924, 2244)
+
+[node name="spaceDebris18" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1843, 2325)
+
+[node name="spaceDebris19" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1916, 2416)
+
+[node name="spaceDebris20" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(2075, 2361)
+
+[node name="spaceDebris21" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(2181, 2230)
+
+[node name="spaceDebris22" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(2337, 2401)
+
+[node name="spaceDebris23" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(860, 2534)
+
+[node name="spaceDebris24" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(314, 2413)
+
+[node name="spaceDebris25" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(418, 3512)
+
+[node name="spaceDebris26" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1058, 3824)
+
+[node name="spaceDebris27" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(2237, 3747)
+
+[node name="spaceDebris28" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(3762, 3800)
+
+[node name="spaceDebris29" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(3845, 2832)
+
+[node name="spaceDebris30" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(3603, 2862)
+
+[node name="spaceDebris31" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(3411, 2980)
+
+[node name="spaceDebris32" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(3112, 3037)
+
+[node name="spaceDebris33" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(2642, 3000)
+
+[node name="spaceDebris34" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(2561, 3249)
+
+[node name="spaceDebris35" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(2682, 3531)
+
+[node name="spaceDebris36" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(2968, 3716)
+
+[node name="spaceDebris37" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(3311, 3464)
+
+[node name="spaceDebris38" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(3553, 3437)
+
+[node name="spaceDebris39" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(3795, 3397)
+
+[node name="spaceDebris40" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(2958, 3148)
+
+[node name="spaceDebris41" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1503, 3239)
+
+[node name="spaceDebris42" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1187, 3209)
+
+[node name="spaceDebris43" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(817, 3159)
+
+[node name="spaceDebris44" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(541, 3199)
+
+[node name="spaceDebris45" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(517, 3693)
+
+[node name="spaceDebris46" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1522, 3673)
+
+[node name="spaceDebris47" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(2029, 3132)
+
+[node name="spaceDebris48" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(2221, 2547)
+
+[node name="spaceDebris49" parent="areaOne/Debris" groups=["space_debris"] instance=ExtResource("10_0vrit")]
+position = Vector2(1767, 2520)
 
 [node name="NorthBoundary" type="StaticBody2D" parent="areaOne"]
 position = Vector2(1869, 29)
