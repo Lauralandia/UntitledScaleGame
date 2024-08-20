@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b5n65qtj2u2do" path="res://Assets/Sprites/ufoGreen.png" id="1_6why1"]
 [ext_resource type="Script" path="res://Scripts/enemy_ufo.gd" id="1_u5ddo"]
 [ext_resource type="Shader" uid="uid://dms6oi6hguo1b" path="res://Scripts/hit_flash.tres" id="2_6vlv7"]
-[ext_resource type="Texture2D" uid="uid://dyikjd8uy1bqu" path="res://Assets/Sprites/AnsleyArt/animation_portal.png" id="4_cl7hp"]
+[ext_resource type="Texture2D" uid="uid://fn3i65q7aosu" path="res://Assets/Sprites/AnsleyArt/animation_portal.png" id="4_cl7hp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kp6hc"]
 resource_local_to_scene = true

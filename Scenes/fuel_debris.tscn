@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bjban52w5abnp"]
 
 [ext_resource type="Script" path="res://Scripts/fuel_debris.gd" id="1_qigjp"]
-[ext_resource type="Texture2D" uid="uid://4ivlnuxmsvo8" path="res://Assets/Sprites/AnsleyArt/battery01.png" id="1_wv0ar"]
+[ext_resource type="Texture2D" uid="uid://cku657gbctw13" path="res://Assets/Sprites/AnsleyArt/battery01.png" id="1_wv0ar"]
 [ext_resource type="Shader" uid="uid://dms6oi6hguo1b" path="res://Scripts/hit_flash.tres" id="2_ln1l4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mrip5"]
