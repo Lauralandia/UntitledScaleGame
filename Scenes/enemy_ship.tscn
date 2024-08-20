@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dfpctv1gnm3yn" path="res://Assets/Sprites/enemyBlack3.png" id="1_akj1m"]
 [ext_resource type="Script" path="res://Scripts/enemy_ship.gd" id="1_tbpih"]
 [ext_resource type="Shader" uid="uid://dms6oi6hguo1b" path="res://Scripts/hit_flash.tres" id="2_1kk80"]
-[ext_resource type="Texture2D" uid="uid://fn3i65q7aosu" path="res://Assets/Sprites/AnsleyArt/animation_portal.png" id="4_bwlk5"]
+[ext_resource type="Texture2D" uid="uid://dyikjd8uy1bqu" path="res://Assets/Sprites/AnsleyArt/animation_portal.png" id="4_bwlk5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tlrg2"]
 resource_local_to_scene = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://wew2x6d2hfpm"]
+[gd_scene load_steps=38 format=3 uid="uid://wew2x6d2hfpm"]
 
 [ext_resource type="Script" path="res://Scripts/mainShip.gd" id="1_d2fvg"]
 [ext_resource type="Shader" uid="uid://dms6oi6hguo1b" path="res://Scripts/hit_flash.tres" id="2_8olmo"]
@@ -7,11 +7,55 @@
 [ext_resource type="AudioStream" uid="uid://budehfhk2j5c2" path="res://Assets/Sounds/collect-loot.wav" id="2_jiy5p"]
 [ext_resource type="PackedScene" uid="uid://cq0lmch7yi4se" path="res://Scenes/laser_beam.tscn" id="3_6bhj3"]
 [ext_resource type="AudioStream" uid="uid://dki6qhik1qqxc" path="res://Assets/Sounds/main_ship_hit.wav" id="4_ausdj"]
+[ext_resource type="Texture2D" uid="uid://mgis5iyjj6p8" path="res://Assets/Sprites/AnsleyArt/animation_explosion.png" id="4_cf0ed"]
 [ext_resource type="Texture2D" uid="uid://cypvwct15rqhk" path="res://Assets/Sprites/ship_thruster.png" id="5_7m0mv"]
 [ext_resource type="Texture2D" uid="uid://dpocmy5i76ukk" path="res://Assets/Sprites/wingBlue_6.png" id="6_wrobd"]
 [ext_resource type="Texture2D" uid="uid://bkr2830p26iaa" path="res://Assets/Sprites/wingRed_2.png" id="7_24fx5"]
 [ext_resource type="Texture2D" uid="uid://b2ikkf5hs66x4" path="res://Assets/Sprites/cockpitBlue_3.png" id="8_5vde1"]
 [ext_resource type="Texture2D" uid="uid://c1l1kob8wf7u0" path="res://Assets/Sprites/cockpitRed_0.png" id="9_ua1jm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bepur"]
+atlas = ExtResource("4_cf0ed")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6iwj"]
+atlas = ExtResource("4_cf0ed")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quaj3"]
+atlas = ExtResource("4_cf0ed")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sgnp"]
+atlas = ExtResource("4_cf0ed")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pq38"]
+atlas = ExtResource("4_cf0ed")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ukbn4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bepur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6iwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_quaj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sgnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pq38")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 5.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7eh6c"]
 resource_local_to_scene = true
@@ -267,6 +311,14 @@ bus = &"SFX"
 stream = ExtResource("2_ald15")
 volume_db = 15.0
 bus = &"SFX"
+
+[node name="ShipExplosion" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ukbn4")
+animation = &"explosion"
+frame = 4
+frame_progress = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_7eh6c")
