@@ -9,10 +9,12 @@ var map = false
 
 
 func _process(delta):
+
 	if Input.is_action_just_pressed("pause"):
 		pauseMenu()	
 	if Input.is_action_just_pressed("map"):
 		mapOverlay()
+
 		
 func pauseMenu():
 	if paused:

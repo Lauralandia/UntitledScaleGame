@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=3 uid="uid://54rb5hceb1qs"]
+
+[ext_resource type="Script" path="res://Scripts/textsound.gd" id="1_wna6m"]
+[ext_resource type="AudioStream" uid="uid://dcxnt3c7wnjf8" path="res://Assets/Sounds/text_typing_sfx.mp3" id="3_202bn"]
+
+[sub_resource type="Animation" id="Animation_ai6i5"]
+resource_name = "intro"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MissionLog:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_llylc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MissionLog:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hfdel"]
+_data = {
+"RESET": SubResource("Animation_llylc"),
+"intro": SubResource("Animation_ai6i5")
+}
+
+[node name="introMissionlog" type="Control"]
+layout_mode = 3
+anchor_right = 0.947
+anchor_bottom = 0.422
+offset_right = 0.271973
+offset_bottom = -0.0960083
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wna6m")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+light_mask = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0908424, 0.00407903, 0.327182, 1)
+
+[node name="MissionLog" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.948
+anchor_bottom = 0.605
+offset_right = 55.2479
+offset_bottom = 305.36
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.544554, 0.78932, 0.997578, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[b]Location, unknown.[/b]
+
+Log: 168.5148.1364.12
+[i]I'm not entirely sure what happened. Even the logs I've sifted through haven't been able to tell me anything besides that the systems were fully functional and then they were not. Hardly a useful revelation. One moment we were coasting clear and the next every alarm and censor was going off the chart. At this point I am on limited fuel and if the radar is functioning once more, facing an asteroid field that's likely going to pulverize what's left of this hunk of metal. The only way I'm getting out of here is with fuel and probably even a few repairs.[/i]"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hfdel")
+}
+
+[node name="TextSoundSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_202bn")
+bus = &"SFX"
