@@ -11,5 +11,3 @@ func _process(delta):
 		mission_log.visible_ratio += 0.1 * delta
 		if !text_sound_sfx.is_playing():
 			text_sound_sfx.play()
-	#if visible_characters != $MissionLog.visible_characters:
-		#visible_characters = $MissionLog.visible_characters
