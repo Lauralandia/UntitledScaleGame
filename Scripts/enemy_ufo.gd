@@ -10,6 +10,15 @@ var speed = 100
 var rotation_speed = 1
 var aggro_range = 500
 var min_pursuit = 100
+@onready var port_in = $AnimatedSprite2D
+@onready var sprite = $Sprite2D
+
+func _ready() -> void:
+	port_in.play()
+	await get_tree().create_timer(0.9).timeout
+	sprite.visible = true
+	port_in.visible = false
+	
 
 func _physics_process(delta) -> void:
 	orig_pos = target_ship.global_position
@@ -27,6 +36,11 @@ func _physics_process(delta) -> void:
 		speed = 0
 	
 	if enemy_health <= 0:
+		if randi_range(0,3) == 0:
+			var spawnFuel :  PackedScene = load("res://Scenes/fuel_debris.tscn")
+			var fuelDebris = spawnFuel.instantiate()
+			get_parent().get_parent().get_node("Debris").add_child(fuelDebris)
+			fuelDebris.global_position = global_position
 		queue_free()
 		
 	velocity = target_pos * speed

@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://n2eyx2kc4yc2"]
+
+[ext_resource type="Script" path="res://Scripts/fuel_debris.gd" id="1_qigjp"]
+[ext_resource type="Texture2D" uid="uid://4ivlnuxmsvo8" path="res://Assets/Sprites/AnsleyArt/battery01.png" id="1_wv0ar"]
+[ext_resource type="Shader" uid="uid://dms6oi6hguo1b" path="res://Scripts/hit_flash.tres" id="2_ln1l4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mrip5"]
+shader = ExtResource("2_ln1l4")
+shader_parameter/Enabled = false
+shader_parameter/Tint = Color(1, 0.509804, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aooc1"]
+size = Vector2(53, 42)
+
+[sub_resource type="Animation" id="Animation_ppdam"]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ikeau"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/Enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_534ga"]
+_data = {
+"RESET": SubResource("Animation_ikeau"),
+"flash": SubResource("Animation_ppdam")
+}
+
+[node name="fuelDebris" type="Area2D"]
+collision_layer = 128
+script = ExtResource("1_qigjp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_mrip5")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_wv0ar")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+scale = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_aooc1")
+
+[node name="AP" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_534ga")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
