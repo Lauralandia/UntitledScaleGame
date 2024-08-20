@@ -22,12 +22,20 @@ extends CharacterBody2D
 @onready var collision_shape_4 = $hitBox/CollisionShape4
 @onready var collision_shape_5 = $hitBox/CollisionShape5
 @onready var collision_shape_6 = $hitBox/CollisionShape6
+@onready var ship_explosion = $ShipExplosion
 
 var upgrade_tier = 0
 var upgrade_resource = 0
 
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("move_west", "move_east", "move_north", "move_south")
+	
+	if upgrade_tier >= 6 && HUD.ship_fuel >= 500:
+		# print("you win the game!")
+		get_parent().get_parent().queue_free()
+		var win_game_scene = load("res://Scenes/win_game_scene.tscn").instantiate()
+		get_parent().get_parent().get_parent().add_child(win_game_scene)
+		
 
 	if direction != Vector2.ZERO:
 		if upgrade_tier > 5:
@@ -51,6 +59,9 @@ func _physics_process(delta: float) -> void:
 	
 #func _unhandled_key_input(event):
 	#if Input.is_action_just_pressed("interact"):
+		#get_parent().get_parent().queue_free()
+		#var win_game_scene = load("res://Scenes/win_game_scene.tscn").instantiate()
+		#get_parent().get_parent().get_parent().add_child(win_game_scene)
 		#upgrade_tier += 1
 		#update_tier()
 	#print(upgrade_tier)
@@ -135,3 +146,5 @@ func _on_hit_box_body_entered(body):
 			AP.play("hit_flash")
 		ship_hit.play()
 		body.queue_free()
+#func playExplosion():
+	#ShipExplosion.play()

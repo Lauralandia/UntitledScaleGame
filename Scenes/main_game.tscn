@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c0mfbqiierh28"]
+[gd_scene load_steps=27 format=3 uid="uid://c0mfbqiierh28"]
 
 [ext_resource type="PackedScene" uid="uid://wew2x6d2hfpm" path="res://Scenes/main_ship.tscn" id="1_qwqwi"]
 [ext_resource type="Script" path="res://Scripts/main_game.gd" id="1_vp66c"]
@@ -14,11 +14,13 @@
 [ext_resource type="PackedScene" uid="uid://fghg0okmg1ea" path="res://Scenes/pause_menu.tscn" id="6_o63pf"]
 [ext_resource type="PackedScene" uid="uid://did6o65r5yq0k" path="res://Scenes/enemy_spawner.tscn" id="8_awe5u"]
 [ext_resource type="Texture2D" uid="uid://cst66vh0neffu" path="res://Assets/Sprites/laser_particle.png" id="8_pwkka"]
+[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="8_q343u"]
 [ext_resource type="PackedScene" uid="uid://cwgdlud6i5s80" path="res://Scenes/enemy_spawner_ufo.tscn" id="9_f37g5"]
 [ext_resource type="PackedScene" uid="uid://bpettjv505srp" path="res://Scenes/space_debris.tscn" id="10_0vrit"]
 [ext_resource type="PackedScene" uid="uid://owwjoe3ffpmq" path="res://Scenes/debris_spawner.tscn" id="12_vvknk"]
 [ext_resource type="Texture2D" uid="uid://gpmjdy4iwmeo" path="res://Assets/Misc/starfieldminimap.png" id="16_0a3eq"]
 [ext_resource type="PackedScene" uid="uid://54rb5hceb1qs" path="res://Scenes/intro_missionlog.tscn" id="19_h1fy8"]
+[ext_resource type="Script" path="res://Scripts/Tutorial.gd" id="21_2k7ed"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qamp6"]
 normal = Vector2(1, 0)
@@ -85,6 +87,7 @@ limit_right = 4080
 limit_bottom = 4080
 limit_smoothed = true
 position_smoothing_enabled = true
+script = ExtResource("8_q343u")
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="areaOne/mainShip/Camera2D"]
 stream = ExtResource("3_2dy38")
@@ -539,22 +542,39 @@ offset_right = 21.0
 offset_bottom = 209.0
 
 [node name="Tutorial" type="Node" parent="HUD"]
+script = ExtResource("21_2k7ed")
 
-[node name="1Collect Debris" type="Label" parent="HUD/Tutorial"]
+[node name="ControlsLabel" type="RichTextLabel" parent="HUD/Tutorial"]
 visible = false
-offset_left = 586.0
-offset_top = 543.0
-offset_right = 711.0
-offset_bottom = 566.0
-theme_override_colors/font_color = Color(0.6732, 0.781722, 1, 1)
-theme_override_font_sizes/font_size = 10
-text = "Collect debris right here >"
+offset_left = 620.0
+offset_top = 93.0
+offset_right = 946.0
+offset_bottom = 288.0
+bbcode_enabled = true
+text = "[tornado radius=3 freq=2]Controls
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HUD/Tutorial"]
+Use [color=green]WASD[/color] to move
+Shoot with [color=green]Space[/color] or [color=green]Left Mouse Click[/color]
+Aim with [color=green]Cursor[/color]
+[color=green]M[/color] to pull up starmap
+[color=green]Escape[/color] to pause game
+
+
+"
+
+[node name="ObjectivesLabel" type="RichTextLabel" parent="HUD/Tutorial"]
 visible = false
-offset_left = 651.0
-offset_top = 187.0
-offset_right = 786.0
-offset_bottom = 227.0
+offset_left = 121.0
+offset_top = 86.0
+offset_right = 512.0
+offset_bottom = 267.0
+bbcode_enabled = true
+text = "[shake rate=15.0 level=1 connected=1]Objectives
+
+[shake rate=20.0 level=5 connected=1][color=red]Survive[/color][/shake]
+Don't run out of [color=yellow]fuel[/color]
+Scavenge for loot to [color=cyan]scale[/color] up your ship upgrades
+Once you reach final form fill your 
+fuel tank to 100% to jump back home"
 
 [connection signal="timeout" from="HUD/fuelBG/fuelTimer" to="HUD" method="_on_fuel_timer_timeout"]
