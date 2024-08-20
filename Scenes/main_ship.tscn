@@ -287,7 +287,7 @@ shape = SubResource("RectangleShape2D_co4py")
 position = Vector2(19, 0)
 
 [node name="hitBox" type="Area2D" parent="."]
-collision_mask = 10
+collision_mask = 138
 
 [node name="CollisionShape0" type="CollisionShape2D" parent="hitBox"]
 shape = SubResource("RectangleShape2D_bu8wm")
