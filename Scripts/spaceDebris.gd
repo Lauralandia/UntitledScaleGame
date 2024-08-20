@@ -2,6 +2,8 @@ extends Area2D
 
 @onready var AP = $AP
 @onready var target_ship = get_parent().get_parent().get_node("mainShip")
+@export var debrisMin = 1
+@export var debrisMax = 3
 
 var visibility_range = 300
 
@@ -14,7 +16,7 @@ func _physics_process(delta):
 func _on_area_entered(area):
 	if area.is_in_group("main_ship"):
 		target_ship.get_node("collectResource").play()
-		var value := randi_range(1, 3)
+		var value := randi_range(debrisMin, debrisMax)
 		var old_tier = target_ship.upgrade_tier
 		target_ship.upgrade_resource += value
 		target_ship.update_tier()
