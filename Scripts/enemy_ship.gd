@@ -6,9 +6,17 @@ var enemy_health = 30
 var target_pos
 var orig_pos
 var speed = 100
+@onready var sprite = $Sprite2D
+@onready var port_in = $AnimatedSprite2D
 
 var aggro_range = 400
 var min_pursuit = 200
+
+func _ready() -> void:
+	port_in.play()
+	await get_tree().create_timer(0.9).timeout
+	sprite.visible = true
+	port_in.visible = false
 
 func _physics_process(delta) -> void:
 	orig_pos = target_ship.global_position
@@ -25,6 +33,7 @@ func _physics_process(delta) -> void:
 		speed = 0
 	
 	if enemy_health <= 0:
+		
 		queue_free()
 		
 	velocity = target_pos * speed

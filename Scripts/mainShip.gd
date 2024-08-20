@@ -53,7 +53,9 @@ func _physics_process(delta: float) -> void:
 	#if Input.is_action_just_pressed("interact"):
 		#upgrade_tier += 1
 		#update_tier()
-
+	#print(upgrade_tier)
+	#print(upgrade_resource)
+	
 func update_tier ():
 	if (upgrade_resource >= 180):
 		upgrade_tier = 6
@@ -77,53 +79,54 @@ func update_tier ():
 			left_wing_t_2.hide()
 			cockpit_t_2.hide()
 		1:
-			collision_shape_1.disabled = false
+			collision_shape_1.set_deferred("disabled", false)
 			right_wing_t_1.show()
 		2:
-			collision_shape_1.disabled = false
-			collision_shape_2.disabled = false
+			collision_shape_1.set_deferred("disabled", false)
+			collision_shape_2.set_deferred("disabled", false)
 			right_wing_t_1.show()
 			left_wing_t_1.show()
 		3:
-			collision_shape_1.disabled = false
-			collision_shape_2.disabled = false
-			collision_shape_3.disabled = false
+			collision_shape_1.set_deferred("disabled", false)
+			collision_shape_2.set_deferred("disabled", false)
+			collision_shape_3.set_deferred("disabled", false)
 			right_wing_t_1.show()
 			left_wing_t_1.show()
 			cockpit_t_1.show()
 		4:
-			collision_shape_1.disabled = false
-			collision_shape_2.disabled = false
-			collision_shape_3.disabled = false
-			collision_shape_4.disabled = false
+			collision_shape_1.set_deferred("disabled", false)
+			collision_shape_2.set_deferred("disabled", false)
+			collision_shape_3.set_deferred("disabled", false)
+			collision_shape_4.set_deferred("disabled", false)
 			right_wing_t_1.show()
 			left_wing_t_1.show()
 			cockpit_t_1.show()
 			right_wing_t_2.show()
 		5:
-			collision_shape_1.disabled = false
-			collision_shape_2.disabled = false
-			collision_shape_3.disabled = false
-			collision_shape_4.disabled = false
-			collision_shape_5.disabled = false
+			collision_shape_1.set_deferred("disabled", false)
+			collision_shape_2.set_deferred("disabled", false)
+			collision_shape_3.set_deferred("disabled", false)
+			collision_shape_4.set_deferred("disabled", false)
+			collision_shape_5.set_deferred("disabled", false)
 			right_wing_t_1.show()
 			left_wing_t_1.show()
 			cockpit_t_1.show()
 			right_wing_t_2.show()
 			left_wing_t_2.show()
 		6:
-			collision_shape_1.disabled = false
-			collision_shape_2.disabled = false
-			collision_shape_3.disabled = false
-			collision_shape_4.disabled = false
-			collision_shape_5.disabled = false
-			collision_shape_6.disabled = false
+			collision_shape_1.set_deferred("disabled", false)
+			collision_shape_2.set_deferred("disabled", false)
+			collision_shape_3.set_deferred("disabled", false)
+			collision_shape_4.set_deferred("disabled", false)
+			collision_shape_5.set_deferred("disabled", false)
+			collision_shape_6.set_deferred("disabled", false)
 			right_wing_t_1.show()
 			left_wing_t_1.show()
 			cockpit_t_1.show()
 			right_wing_t_2.show()
 			left_wing_t_2.show()
 			cockpit_t_2.show()
+	print(upgrade_tier)
 
 func _on_hit_box_body_entered(body):
 	if body.is_in_group("gunfire"):
