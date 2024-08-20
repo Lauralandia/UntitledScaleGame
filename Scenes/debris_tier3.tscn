@@ -65,4 +65,4 @@ libraries = {
 "": SubResource("AnimationLibrary_64y7a")
 }
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -50,10 +50,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	look_at(get_global_mouse_position())
 	
-func _unhandled_key_input(event):
-	if Input.is_action_just_pressed("interact"):
-		upgrade_tier += 1
-		update_tier()
+#func _unhandled_key_input(event):
+	#if Input.is_action_just_pressed("interact"):
+		#upgrade_tier += 1
+		#update_tier()
 
 func update_tier ():
 	if (upgrade_resource >= 180):
