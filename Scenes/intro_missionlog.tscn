@@ -3,6 +3,21 @@
 [ext_resource type="Script" path="res://Scripts/textsound.gd" id="1_wna6m"]
 [ext_resource type="AudioStream" uid="uid://dcxnt3c7wnjf8" path="res://Assets/Sounds/text_typing_sfx.mp3" id="3_202bn"]
 
+[sub_resource type="Animation" id="Animation_llylc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MissionLog:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_ai6i5"]
 resource_name = "intro"
 length = 20.0
@@ -17,21 +32,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_llylc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MissionLog:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hfdel"]
@@ -76,8 +76,10 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[b]Location, unknown.[/b]
 
-Log: 168.5148.1364.12
-[i]I'm not entirely sure what happened. Even the logs I've sifted through haven't been able to tell me anything besides that the systems were fully functional and then they were not. Hardly a useful revelation. One moment we were coasting clear and the next every alarm and censor was going off the chart. At this point I am on limited fuel and if the radar is functioning once more, facing an asteroid field that's likely going to pulverize what's left of this hunk of metal. The only way I'm getting out of here is with fuel and probably even a few repairs.[/i]"
+[i]Log: 168.5148.1364.12[/i]
+I'm not entirely sure what happened. Even the logs I've sifted through haven't been able to tell me anything besides that the systems were fully functional and then they were not. Hardly a useful revelation. One moment we were coasting clear and the next every alarm and censor was going off the chart. At this point I am on limited fuel and if the radar is functioning once more, facing an asteroid field that's likely going to pulverize what's left of this hunk of metal. The only way I'm getting out of here is with fuel and probably even a few repairs.
+
+[center][i]Click to dismiss[/i][/center]"
 visible_characters = 0
 visible_ratio = 0.0
 
