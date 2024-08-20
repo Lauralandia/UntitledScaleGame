@@ -286,7 +286,7 @@ shape = SubResource("RectangleShape2D_co4py")
 [node name="laserBeam" parent="." instance=ExtResource("3_6bhj3")]
 position = Vector2(19, 0)
 
-[node name="hitBox" type="Area2D" parent="."]
+[node name="hitBox" type="Area2D" parent="." groups=["main_ship"]]
 collision_mask = 138
 
 [node name="CollisionShape0" type="CollisionShape2D" parent="hitBox"]

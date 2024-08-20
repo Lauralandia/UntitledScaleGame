@@ -11,15 +11,15 @@ func _physics_process(delta):
 		if AP != null && !AP.is_playing():
 			AP.play("flash")
 
-func _on_body_entered(body):
-	if body.is_in_group("main_ship"):
-		body.get_node("collectResource").play()
-		var value := randi_range(10, 15)
-		var old_tier = body.upgrade_tier
-		body.upgrade_resource += value
-		body.update_tier()
-		if body.upgrade_tier > old_tier:
-			body.get_node("upgradeTierSFX").play()
+func _on_area_entered(area):
+	if area.is_in_group("main_ship"):
+		target_ship.get_node("collectResource").play()
+		var value := randi_range(1, 3)
+		var old_tier = target_ship.upgrade_tier
+		target_ship.upgrade_resource += value
+		target_ship.update_tier()
+		if target_ship.upgrade_tier > old_tier:
+			target_ship.get_node("upgradeTierSFX").play()
 		
 		queue_free()
 		var number = Label.new()
@@ -44,4 +44,3 @@ func _on_body_entered(body):
 		
 		await tween.finished
 		number.queue_free()
-		
