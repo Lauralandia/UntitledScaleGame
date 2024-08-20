@@ -23,7 +23,6 @@ extends CharacterBody2D
 @onready var collision_shape_5 = $hitBox/CollisionShape5
 @onready var collision_shape_6 = $hitBox/CollisionShape6
 
-
 var upgrade_tier = 0
 var upgrade_resource = 0
 
@@ -133,5 +132,3 @@ func _on_hit_box_body_entered(body):
 			AP.play("hit_flash")
 		ship_hit.play()
 		body.queue_free()
-
-

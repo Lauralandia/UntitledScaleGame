@@ -51,6 +51,8 @@ _data = {
 [node name="debrisTier3" type="Area2D"]
 collision_layer = 128
 script = ExtResource("1_vflou")
+debrisMin = 10
+debrisMax = 15
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_hm8jn")
