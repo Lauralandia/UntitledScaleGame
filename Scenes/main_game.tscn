@@ -87,7 +87,7 @@ position_smoothing_enabled = true
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="areaOne/mainShip/Camera2D"]
 stream = ExtResource("3_2dy38")
-volume_db = 10.0
+volume_db = 5.0
 autoplay = true
 bus = &"BG"
 

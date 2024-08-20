@@ -82,7 +82,7 @@ size_flags_vertical = 4
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="mainMenu/MarginContainer/VBoxContainer"]
 stream = ExtResource("3_f5khm")
-volume_db = 10.0
+volume_db = 5.0
 autoplay = true
 bus = &"BG"
 
