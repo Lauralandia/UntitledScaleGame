@@ -2,7 +2,6 @@ extends Area2D
 
 @onready var AP = $AP
 @onready var target_ship = get_parent().get_parent().get_node("mainShip")
-@onready var collect_resource = $CollectResource
 
 var visibility_range = 300
 

@@ -6,8 +6,8 @@ extends CanvasLayer
 @onready var main_ship = get_parent().get_node("areaOne").get_node("mainShip")
 @onready var debris_counter = $DebrisCounter
 
-var ship_health = 100
-var ship_fuel = 1000
+var ship_health = 50
+var ship_fuel = 500
 
 func _process(delta) -> void:
 	health_bar.value = ship_health
