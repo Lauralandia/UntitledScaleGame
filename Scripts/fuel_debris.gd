@@ -3,8 +3,8 @@ extends Area2D
 @onready var AP = $AP
 @onready var target_ship = get_parent().get_parent().get_node("mainShip")
 @onready var HUD = get_parent().get_parent().get_parent().get_node("HUD")
-@export var fuelMin = 5
-@export var fuelMax = 25
+@export var fuelMin = 50
+@export var fuelMax = 100
 
 var visibility_range = 300
 

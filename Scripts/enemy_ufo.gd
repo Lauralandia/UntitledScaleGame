@@ -36,7 +36,7 @@ func _physics_process(delta) -> void:
 		speed = 0
 	
 	if enemy_health <= 0:
-		if randi_range(0,3) == 0:
+		if randi_range(0,2) == 0:
 			var spawnFuel :  PackedScene = load("res://Scenes/fuel_debris.tscn")
 			var fuelDebris = spawnFuel.instantiate()
 			get_parent().get_parent().get_node("Debris").add_child(fuelDebris)
