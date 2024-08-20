@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7tlpyvmlvvbn"]
+[gd_scene load_steps=17 format=3 uid="uid://b7tlpyvmlvvbn"]
 
 [ext_resource type="Texture2D" uid="uid://b5n65qtj2u2do" path="res://Assets/Sprites/ufoGreen.png" id="1_6why1"]
 [ext_resource type="Script" path="res://Scripts/enemy_ufo.gd" id="1_u5ddo"]
 [ext_resource type="Shader" uid="uid://dms6oi6hguo1b" path="res://Scripts/hit_flash.tres" id="2_6vlv7"]
+[ext_resource type="Texture2D" uid="uid://fn3i65q7aosu" path="res://Assets/Sprites/AnsleyArt/animation_portal.png" id="4_cl7hp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kp6hc"]
 resource_local_to_scene = true
@@ -50,12 +51,63 @@ _data = {
 "hit_flash": SubResource("Animation_vn4x4")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yq80"]
+atlas = ExtResource("4_cl7hp")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hykuj"]
+atlas = ExtResource("4_cl7hp")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o32c4"]
+atlas = ExtResource("4_cl7hp")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y66tj"]
+atlas = ExtResource("4_cl7hp")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw0n3"]
+atlas = ExtResource("4_cl7hp")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwuyj"]
+atlas = ExtResource("4_cl7hp")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eup6k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yq80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hykuj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o32c4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y66tj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yw0n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwuyj")
+}],
+"loop": false,
+"name": &"port_in",
+"speed": 6.0
+}]
+
 [node name="enemyUFO" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_u5ddo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_kp6hc")
 texture = ExtResource("1_6why1")
 
@@ -76,5 +128,12 @@ position = Vector2(0, -56)
 libraries = {
 "": SubResource("AnimationLibrary_8l3cm")
 }
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_eup6k")
+animation = &"port_in"
+frame = 5
+frame_progress = 1.0
 
 [connection signal="timeout" from="gunFire" to="." method="_on_gun_fire_timeout"]
