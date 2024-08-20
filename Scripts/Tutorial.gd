@@ -8,6 +8,6 @@ extends Node
 func startTutorial():
 	controls_label.visible = true
 	objectives_label.visible = true
-	await get_tree().create_timer(30).timeout
+	await get_tree().create_timer(60).timeout
 	controls_label.visible = false
 	objectives_label.visible = false
