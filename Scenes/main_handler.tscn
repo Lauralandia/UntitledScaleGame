@@ -84,6 +84,7 @@ size_flags_vertical = 4
 stream = ExtResource("3_f5khm")
 volume_db = 10.0
 autoplay = true
+bus = &"BG"
 
 [node name="newGame" type="Button" parent="mainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2

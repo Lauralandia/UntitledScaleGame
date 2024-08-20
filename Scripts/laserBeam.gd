@@ -14,6 +14,10 @@ func _ready() -> void:
 	tween_beam = create_tween()
 
 func _physics_process (delta: float) -> void:
+	if get_parent().upgrade_tier > 5:
+		start_particles.emitting = false
+		beam_particles.emitting = false
+		end_particles.emitting = false
 	if Input.is_action_pressed("laser_attack") && get_parent().get_parent().get_parent().paused == false && get_parent().get_parent().get_parent().map == false:
 		is_casting = true
 		if get_parent().upgrade_tier <= 5:

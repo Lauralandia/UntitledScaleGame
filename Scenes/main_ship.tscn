@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://wew2x6d2hfpm"]
+[gd_scene load_steps=31 format=3 uid="uid://wew2x6d2hfpm"]
 
 [ext_resource type="Script" path="res://Scripts/mainShip.gd" id="1_d2fvg"]
 [ext_resource type="Shader" uid="uid://dms6oi6hguo1b" path="res://Scripts/hit_flash.tres" id="2_8olmo"]
@@ -13,7 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://b2ikkf5hs66x4" path="res://Assets/Sprites/cockpitBlue_3.png" id="8_5vde1"]
 [ext_resource type="Texture2D" uid="uid://c1l1kob8wf7u0" path="res://Assets/Sprites/cockpitRed_0.png" id="9_ua1jm"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p4xah"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7eh6c"]
+resource_local_to_scene = true
 shader = ExtResource("2_8olmo")
 shader_parameter/Enabled = false
 shader_parameter/Tint = Color(1, 0, 0, 1)
@@ -27,6 +28,78 @@ tracks/0/path = NodePath(".:material:shader_parameter/Enabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../right_wing_t1:material:shader_parameter/Enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../right_wing_t2:material:shader_parameter/Enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../left_wing_t1:material:shader_parameter/Enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../left_wing_t2:material:shader_parameter/Enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../cockpit_t1:material:shader_parameter/Enabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../cockpit_t2:material:shader_parameter/Enabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -48,6 +121,78 @@ tracks/0/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../right_wing_t1:material:shader_parameter/Enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../right_wing_t2:material:shader_parameter/Enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../left_wing_t1:material:shader_parameter/Enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../left_wing_t2:material:shader_parameter/Enabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../cockpit_t1:material:shader_parameter/Enabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../cockpit_t2:material:shader_parameter/Enabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k7hrg"]
 _data = {
@@ -61,6 +206,54 @@ size = Vector2(38, 48)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bu8wm"]
 size = Vector2(46, 56)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h00se"]
+size = Vector2(45, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kadbu"]
+size = Vector2(43, 76)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vmbho"]
+size = Vector2(60, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_77t0x"]
+size = Vector2(103, 153)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpy56"]
+size = Vector2(107, 152)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_arahr"]
+size = Vector2(156, 103)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t8wmo"]
+shader = ExtResource("2_8olmo")
+shader_parameter/Enabled = false
+shader_parameter/Tint = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gulvr"]
+shader = ExtResource("2_8olmo")
+shader_parameter/Enabled = false
+shader_parameter/Tint = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0yjrw"]
+shader = ExtResource("2_8olmo")
+shader_parameter/Enabled = false
+shader_parameter/Tint = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2r0uw"]
+shader = ExtResource("2_8olmo")
+shader_parameter/Enabled = false
+shader_parameter/Tint = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_itm4u"]
+shader = ExtResource("2_8olmo")
+shader_parameter/Enabled = false
+shader_parameter/Tint = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qkdie"]
+shader = ExtResource("2_8olmo")
+shader_parameter/Enabled = false
+shader_parameter/Tint = Color(1, 0, 0, 1)
+
 [node name="mainShip" type="CharacterBody2D"]
 collision_mask = 642
 script = ExtResource("1_d2fvg")
@@ -68,13 +261,15 @@ script = ExtResource("1_d2fvg")
 [node name="collectResource" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_jiy5p")
 volume_db = 5.0
+bus = &"SFX"
 
 [node name="upgradeTierSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_ald15")
 volume_db = 15.0
+bus = &"SFX"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_p4xah")
+material = SubResource("ShaderMaterial_7eh6c")
 rotation = 1.5708
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ieq62")
@@ -92,13 +287,44 @@ shape = SubResource("RectangleShape2D_co4py")
 position = Vector2(19, 0)
 
 [node name="hitBox" type="Area2D" parent="."]
-collision_mask = 10
+collision_mask = 138
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitBox"]
+[node name="CollisionShape0" type="CollisionShape2D" parent="hitBox"]
 shape = SubResource("RectangleShape2D_bu8wm")
+
+[node name="CollisionShape1" type="CollisionShape2D" parent="hitBox"]
+position = Vector2(7.5, 44)
+shape = SubResource("RectangleShape2D_h00se")
+disabled = true
+
+[node name="CollisionShape2" type="CollisionShape2D" parent="hitBox"]
+position = Vector2(7.5, -43)
+shape = SubResource("RectangleShape2D_kadbu")
+disabled = true
+
+[node name="CollisionShape3" type="CollisionShape2D" parent="hitBox"]
+position = Vector2(13, 0)
+shape = SubResource("RectangleShape2D_vmbho")
+disabled = true
+
+[node name="CollisionShape4" type="CollisionShape2D" parent="hitBox"]
+position = Vector2(41.5, 104.5)
+shape = SubResource("RectangleShape2D_77t0x")
+disabled = true
+
+[node name="CollisionShape5" type="CollisionShape2D" parent="hitBox"]
+position = Vector2(39.5, -103)
+shape = SubResource("RectangleShape2D_xpy56")
+disabled = true
+
+[node name="CollisionShape6" type="CollisionShape2D" parent="hitBox"]
+position = Vector2(65, -0.5)
+shape = SubResource("RectangleShape2D_arahr")
+disabled = true
 
 [node name="shipHit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_ausdj")
+bus = &"SFX"
 
 [node name="ship_thruster" type="Sprite2D" parent="."]
 visible = false
@@ -116,6 +342,7 @@ texture = ExtResource("5_7m0mv")
 
 [node name="right_wing_t1" type="Sprite2D" parent="."]
 visible = false
+material = SubResource("ShaderMaterial_t8wmo")
 position = Vector2(8, 44)
 rotation = 3.14159
 texture = ExtResource("6_wrobd")
@@ -123,6 +350,7 @@ flip_v = true
 
 [node name="right_wing_t2" type="Sprite2D" parent="."]
 visible = false
+material = SubResource("ShaderMaterial_gulvr")
 position = Vector2(41, 104)
 rotation = 3.14159
 scale = Vector2(2, 2)
@@ -131,12 +359,14 @@ flip_h = true
 
 [node name="left_wing_t1" type="Sprite2D" parent="."]
 visible = false
+material = SubResource("ShaderMaterial_0yjrw")
 position = Vector2(8, -43)
 rotation = 3.14159
 texture = ExtResource("6_wrobd")
 
 [node name="left_wing_t2" type="Sprite2D" parent="."]
 visible = false
+material = SubResource("ShaderMaterial_2r0uw")
 position = Vector2(39, -103)
 rotation = 3.14159
 scale = Vector2(2, 2)
@@ -146,12 +376,14 @@ flip_v = true
 
 [node name="cockpit_t1" type="Sprite2D" parent="."]
 visible = false
+material = SubResource("ShaderMaterial_itm4u")
 position = Vector2(13, 0)
 rotation = -1.5708
 texture = ExtResource("8_5vde1")
 
 [node name="cockpit_t2" type="Sprite2D" parent="."]
 visible = false
+material = SubResource("ShaderMaterial_qkdie")
 position = Vector2(65, 0)
 rotation = -1.5708
 scale = Vector2(2, 2)
